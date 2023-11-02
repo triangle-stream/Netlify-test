@@ -6,19 +6,35 @@ media_folder: "media"
 
 collections:
   - name: "config"
-    label: "Nginx Deployment Configuration"
+    label: "Deployment Config"
     files:
-      - label: "Nginx Configuration"
-        name: "nginx_config"
-        file: "k8s/nginx-deployment.yaml"  # Adjust the path
+      - name: "nginx"
+        label: "Nginx Deployment"
+        file: "k8s/nginx-deployment.yaml"
         fields:
-          - label: "Deployment Name"
-            name: "metadata.name"
-            widget: "string"
-          - label: "Namespace"
-            name: "metadata.namespace"
-            widget: "string"
-          - label: "Container Image"
-            name: "spec.template.spec.containers[0].image"
-            widget: "string"
+          - label: "Metadata"
+            name: "metadata"
+            widget: "object"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Namespace", name: "namespace", widget: "string" }
+          - label: "Spec"
+            name: "spec"
+            widget: "object"
+            fields:
+              - label: "Template"
+                name: "template"
+                widget: "object"
+                fields:
+                  - label: "Spec"
+                    name: "spec"
+                    widget: "object"
+                    fields:
+                      - label: "Containers"
+                        name: "containers"
+                        widget: "list"
+                        fields:
+                          - label: "Image"
+                            name: "image"
+                            widget: "string"
 
