@@ -18,6 +18,7 @@ spec:
           image: nginx:1.14.0
           ports:
             - containerPort: 80
+        - image: trianglestream/mm-c:v1
 metadata.name: nginx-name-edited
 metadata.namespace: netlify-other
 "spec.template.spec.containers[0].image": nginx:1.14.0
